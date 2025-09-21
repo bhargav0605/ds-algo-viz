@@ -2,12 +2,21 @@
 import asyncio
 import logging
 import websockets
+import json
+
+from helper.constant import SHORT_FORMS, LONG_FORMS 
 from websockets.exceptions import ConnectionClosedOK, ConnectionClosedError
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 HOST = "localhost"
 PORT = 8765
+
+def addition (a, b):
+    return a + b
+
+def bubblesort():
+    return "bubudsort"
 
 async def echo(ws):
     peer = ws.remote_address
@@ -17,7 +26,18 @@ async def echo(ws):
             # message can be str or bytes
             logging.info("Received from %s: %r", peer, message)
             # echo back as text
-            await ws.send(f"Echo: {message}")
+            data = json.loads(message)
+            a = data['a']
+            b = data['b']
+            sum = addition(a,b)
+
+            response = {
+                "action": "add",
+                "a": a,
+                "b": b,
+                "result": sum
+            }
+            await ws.send(json.dumps(response))
     except ConnectionClosedOK:
         logging.info("Connection closed normally by client: %s", peer)
     except ConnectionClosedError as e:
