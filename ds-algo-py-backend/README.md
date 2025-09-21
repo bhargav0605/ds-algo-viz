@@ -7,7 +7,7 @@
 {
     "type": "define",
     "cmd": "init",
-    "array": [1,2,3],
+    "array": [64, 34, 25, 12, 22, 11, 90],
     "sorting: "bs"
 }
 ```
