@@ -54,3 +54,11 @@
     "array" arr
 }
 ```
+
+### Random
+```
+{
+    "type": "random",
+    "cmd": 
+}
+```
