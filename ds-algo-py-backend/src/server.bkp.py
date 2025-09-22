@@ -113,11 +113,6 @@ async def handler(ws):
                         except websockets.ConnectionClosed:
                             print("Client disconnected; stopping sorting.")
 
-            # try:
-            #     await bubblesort(array, send_event)
-            # except websockets.ConnectionClosed:
-            #     print("Client disconnected; stopping sort.")
-
     except ConnectionClosedOK:
         logging.info("Connection closed normally by client: %s", peer)
     except ConnectionClosedError as e:
