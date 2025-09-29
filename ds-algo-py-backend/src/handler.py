@@ -31,6 +31,7 @@ async def handler(ws):
             maxSize = data["maxSize"]
             minRange = data["minRange"]
             maxRange = data["maxRange"]
+            # I have to cover the part where define also works currently it does not work
 
             sorting_normalized = sorting.strip().lower()
 

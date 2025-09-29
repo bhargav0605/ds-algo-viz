@@ -1,0 +1,30 @@
+# docker-compose.secure.yml
+services:
+  redis:
+    image: bitnami/redis:7.4
+    container_name: redis
+    environment:
+      - REDIS_PASSWORD=supersecret # change me
+      - REDIS_AOF_ENABLED=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL # optional hardening
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/bitnami/redis/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "supersecret", "PING"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  redis-insight:
+    image: redis/redisinsight:latest
+    container_name: redis-insight
+    ports:
+      - "5540:5540"
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
+

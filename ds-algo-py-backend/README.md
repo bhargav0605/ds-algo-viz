@@ -62,3 +62,34 @@
     "cmd": 
 }
 ```
+
+
+### Current:
+{
+    "type": "random",
+    "cmd": "generate",
+    "minSize": 1,
+    "maxSize": 5,
+    "minRange": 5,
+    "maxRange": 500,
+    "sorting": "bs"
+}
+
+Response:
+{
+  "type": "random",
+  "cmd": "compare",
+  "array": [
+    102,
+    325,
+    148,
+    132
+  ],
+  "sorting": "bs",
+  "minSize": 0,
+  "maxSize": 0,
+  "minRange": 0,
+  "maxRange": 0,
+  "i": 0,
+  "j": 1
+}
