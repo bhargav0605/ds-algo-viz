@@ -25,6 +25,21 @@ services:
     depends_on:
       - redis
 
+  py-backend:
+    build:
+      context: ./ds-algo-py-backend
+      dockerfile: Dockerfile
+    image: ds-algo-py:latest
+    container_name: ds-algo-py
+    # environment:
+    depends_on:
+      redis:
+        condition: service_healthy
+      redis-insight:
+        condition: service_started
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
 volumes:
   redis-data:
 
