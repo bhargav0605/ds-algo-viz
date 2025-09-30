@@ -1,18 +1,23 @@
-import asyncio
-import logging
-import websockets
+from flask import Flask, request, jsonify
+from algorithms.bubble_sort import bubble_sort
+from redis_handler import redis_conn, generate_stream_id_and_key
+from typing import List
 
-from handler import *
+app = Flask(__name__)
 
-HOST = "localhost"
-PORT = 8765
+@app.route('/', methods=["POST"])
+def sort_array():
+    data = request.get_json()
 
-if __name__ == "__main__":
-    try:
-        async def main():
-            async with websockets.serve(handler=handler, host=HOST, port=PORT):
-                logging.info("Server started on ws://%s:%d", HOST, PORT)
-                await asyncio.Future()
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        logging.info("Server stopped by user.")
+    sorting = data["sorting"]
+    array = data["array"]
+    user_id = data["user_id"]
+    run_id = data["run_id"]
+
+    stream_key, stream_id = generate_stream_id_and_key(user_id, run_id) 
+    match sorting:
+        case "bs":
+            return bubble_sort(stream_key=stream_key, stream_id=stream_id, array=array)
+        case _:
+            return "hello"
+    

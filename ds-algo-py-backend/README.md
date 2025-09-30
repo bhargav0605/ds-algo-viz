@@ -93,3 +93,15 @@ Response:
   "i": 0,
   "j": 1
 }
+
+# v0.0.2
+Testing for algorithm, Send this to the worker to start the process with Array from the front-end:
+
+```json
+{
+    "sorting": "bs",
+    "array": [6,5,4,3],
+    "user_id": 111111,
+    "run_id": 222222
+}
+```
