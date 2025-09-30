@@ -5,7 +5,7 @@ import time
 import logging
 
 from dotenv import load_dotenv
-from logger import logger
+from src.logger import logger
 
 try:
     load_dotenv()

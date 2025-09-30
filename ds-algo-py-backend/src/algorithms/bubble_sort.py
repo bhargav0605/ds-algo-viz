@@ -1,7 +1,6 @@
 from typing import List
-from redis_handler import redis_conn
-from event import write_event
-from redis_handler import redis_conn
+from src.redis_handler import redis_conn
+from src.event import write_event
 
 import json
 

@@ -55,12 +55,12 @@
 # arr = generate_array(r1)
 # print(arr)
 
-import numpy as np
-import random as rs
+# import numpy as np
+# import random as rs
 
-size_array = rs.randint(1, 5)
-print(f"Size of an array is {size_array}")
+# size_array = rs.randint(1, 5)
+# print(f"Size of an array is {size_array}")
 
-# Generate a 1D array of 10 random integers between 0 (inclusive) and 100 (exclusive)
-random_integers_1d = np.random.randint(-30, 100, size=size_array)
-print(f"1D Array of Random Integers: {random_integers_1d}")
+# # Generate a 1D array of 10 random integers between 0 (inclusive) and 100 (exclusive)
+# random_integers_1d = np.random.randint(-30, 100, size=size_array)
+# print(f"1D Array of Random Integers: {random_integers_1d}")

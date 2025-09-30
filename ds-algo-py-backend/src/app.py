@@ -1,9 +1,12 @@
 from flask import Flask, request, jsonify
-from algorithms.bubble_sort import bubble_sort
-from redis_handler import redis_conn, generate_stream_id_and_key
+from src.algorithms.bubble_sort import bubble_sort
+from src.redis_handler import redis_conn, generate_stream_id_and_key
 from typing import List
 
 app = Flask(__name__)
+
+@app.get("/health")
+def health(): return {"ok": True}, 200
 
 @app.route('/', methods=["POST"])
 def sort_array():
