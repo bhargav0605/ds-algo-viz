@@ -2,10 +2,15 @@
 import os
 import redis
 import time
-from dotenv import load_dotenv
+import logging
 
-# Load environment variables if present
-load_dotenv()
+from dotenv import load_dotenv
+from logger import logger
+
+try:
+    load_dotenv()
+except Exception as e:
+    print(f"Failed to load .env file: {e}")
 
 redis_conn = redis.Redis(
         host=os.getenv("REDIS_HOST", "127.0.0.1"),
@@ -20,3 +25,28 @@ def generate_stream_id_and_key(user_id: int, run_id: int):
     stream_id = f"{millis}-{unique_part}"
     stream_key = f"algo:{{{user_id}}}:{run_id}"
     return stream_key, stream_id
+
+
+def delete_all_streams():
+    """Delete all Redis streams and their messages."""
+    if not redis_conn:
+        logger.error("Redis connection not available. Cannot delete streams.")
+        return
+
+    try:
+        cursor = 0
+        total_deleted = 0
+        while True:
+            cursor, keys = redis_conn.scan(cursor=cursor)
+            for key in keys:
+                if redis_conn.type(key) == 'stream':
+                    redis_conn.delete(key)
+                    total_deleted += 1
+                    logger.info(f"🧹 Deleted stream: {key}")
+            if cursor == 0:
+                break
+
+        logger.info(f"✅ Finished deleting all streams. Total deleted: {total_deleted}")
+
+    except Exception as e:
+        logger.error(f"❌ Failed to delete streams: {e}")
