@@ -1,0 +1,2 @@
+- http connection to worker service is successful.
+- Create websocket and get the data from the frontend.
