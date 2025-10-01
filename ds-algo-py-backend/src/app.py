@@ -14,10 +14,12 @@ def sort_array():
 
     sorting = data["sorting"]
     array = data["array"]
-    user_id = data["user_id"]
-    run_id = data["run_id"]
+    # user_id = data["user_id"]
+    # run_id = data["run_id"]
+    stream_key = data["stream_key"]
+    stream_id = data["stream_id"]
 
-    stream_key, stream_id = generate_stream_id_and_key(user_id, run_id) 
+    # stream_key, stream_id = generate_stream_id_and_key(user_id, run_id) 
     match sorting:
         case "bs":
             return bubble_sort(stream_key=stream_key, stream_id=stream_id, array=array)

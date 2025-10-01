@@ -97,6 +97,8 @@ Response:
 # v0.0.2
 Testing for algorithm, Send this to the worker to start the process with Array from the front-end:
 
+Run: gunicorn src.app:app
+
 ```json
 {
     "sorting": "bs",
