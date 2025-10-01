@@ -12,7 +12,9 @@ import (
 )
 
 func PostEvent(url string, evt model.Event) error {
+	// fmt.Println(evt)
 	jsonData, err := json.Marshal(evt)
+	fmt.Println("📦 Request Body (raw):", string(jsonData))
 	if err != nil {
 		return fmt.Errorf("failed to marshal event: %w", err)
 	}

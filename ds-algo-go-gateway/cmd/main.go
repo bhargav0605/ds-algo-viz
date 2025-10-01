@@ -32,7 +32,7 @@ func main() {
 	}
 
 	// Here I need to add try catch for the specific worker node for that specific sorting IP pool.
-	url := "http://localhost:8000/event"
+	url := "http://localhost:8000/"
 
 	if err := httpclient.PostEvent(url, event); err != nil {
 		log.Fatalf("failed to send event: %v", err)
